@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新党「チームみらい」党首会見ブリーフィング（2025/9/18）</title>
+
+    <style>
+        /* Import Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap');
+
+        /* リセットと基本設定 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Modern color palette */
+            --primary: #0F172A;
+            --primary-light: #1E293B;
+            --accent: #3B82F6;
+            --accent-light: #60A5FA;
+            --accent-dark: #2563EB;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --danger: #EF4444;
+            --text-primary: #0F172A;
+            --text-secondary: #64748B;
+            --text-muted: #94A3B8;
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #F8FAFC;
+            --bg-tertiary: #F1F5F9;
+            --border: #E2E8F0;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+            --max-width: 1280px;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans JP', system-ui, -apple-system, sans-serif;
+            color: var(--text-primary);
+            line-height: 1.6;
+            background: var(--bg-secondary);
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* ヒーローセクション */
+        .hero {
+            position: relative;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            overflow: hidden;
+            padding: 120px 20px 80px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image:
+                radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(168, 85, 247, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(236, 72, 153, 0.1) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(30px, -30px) rotate(1deg); }
+            66% { transform: translate(-20px, 20px) rotate(-1deg); }
+        }
+
+        .hero-content {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            letter-spacing: 0.05em;
+        }
+
+        .hero h1 {
+            color: white;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            margin-bottom: 16px;
+            line-height: 1.2;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero-subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.25rem;
+            font-weight: 400;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .hero-meta {
+            display: flex;
+            gap: 32px;
+            justify-content: center;
+            margin-top: 48px;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 16px 24px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .meta-label {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .meta-value {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        /* ナビゲーション */
+        .nav-wrapper {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
+        }
+
+        nav {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 8px;
+            padding: 12px 0;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+
+        nav ul::-webkit-scrollbar {
+            display: none;
+        }
+
+        nav li {
+            flex-shrink: 0;
+        }
+
+        nav a {
+            display: inline-block;
+            padding: 8px 16px;
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: 0.9rem;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            position: relative;
+            white-space: nowrap;
+        }
+
+        nav a:hover {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+        }
+
+        nav a.active {
+            background: var(--accent);
+            color: white;
+        }
+
+        /* コンテンツコンテナ */
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        /* セクション */
+        section {
+            background: var(--bg-primary);
+            border-radius: 16px;
+            padding: 48px;
+            margin-bottom: 32px;
+            border: 1px solid var(--border);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-light));
+            border-radius: 16px 16px 0 0;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        section:hover::before {
+            opacity: 1;
+        }
+
+        section:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-4px);
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: 32px 24px;
+            }
+        }
+
+        /* 見出し */
+        h2 {
+            color: var(--text-primary);
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 32px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        h2::before {
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 32px;
+            background: linear-gradient(180deg, var(--accent), var(--accent-light));
+            border-radius: 2px;
+        }
+
+        h3 {
+            color: var(--text-primary);
+            font-size: 1.375rem;
+            font-weight: 600;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        h3::before {
+            content: '▶';
+            color: var(--accent);
+            font-size: 0.75em;
+        }
+
+        h4 {
+            color: var(--text-primary);
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-top: 28px;
+            margin-bottom: 16px;
+            color: var(--text-secondary);
+        }
+
+        /* 段落と箇条書き */
+        p {
+            margin-bottom: 20px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        ul, ol {
+            margin-left: 0;
+            margin-bottom: 20px;
+            padding-left: 0;
+            list-style: none;
+        }
+
+        li {
+            margin-bottom: 12px;
+            padding-left: 28px;
+            position: relative;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        ul li::before {
+            content: '•';
+            position: absolute;
+            left: 8px;
+            color: var(--accent);
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        ol {
+            counter-reset: item;
+        }
+
+        ol li {
+            counter-increment: item;
+        }
+
+        ol li::before {
+            content: counter(item) '.';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        li strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        /* ハイライトボックス */
+        .highlight-box {
+            background: linear-gradient(135deg, var(--bg-tertiary), var(--bg-secondary));
+            border: 1px solid var(--border);
+            padding: 32px;
+            margin: 32px 0;
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .highlight-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--accent), var(--accent-light));
+        }
+
+        .highlight-box:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateX(4px);
+        }
+
+        .highlight-box h3 {
+            color: var(--text-primary);
+            margin-top: 0;
+            margin-bottom: 16px;
+            font-size: 1.25rem;
+        }
+
+        .highlight-box h3::before {
+            content: '✓';
+            background: var(--accent);
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.875rem;
+            margin-right: 8px;
+        }
+
+        .highlight-box p {
+            margin-bottom: 0;
+        }
+
+        /* テーブル */
+        .table-container {
+            overflow-x: auto;
+            margin: 32px 0;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            background: var(--bg-primary);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background: var(--bg-tertiary);
+            border-bottom: 2px solid var(--border);
+        }
+
+        th {
+            padding: 16px;
+            text-align: left;
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        td {
+            padding: 16px;
+            text-align: left;
+            color: var(--text-secondary);
+            border-bottom: 1px solid var(--border);
+        }
+
+        tbody tr {
+            transition: background 0.2s ease;
+        }
+
+        tbody tr:hover {
+            background: var(--bg-secondary);
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* バッジ */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 6px 12px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            color: white;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-right: 8px;
+            white-space: nowrap;
+            box-shadow: 0 2px 4px rgba(59, 130, 246, 0.2);
+        }
+
+        .badge-secondary {
+            background: linear-gradient(135deg, var(--text-secondary), var(--text-muted));
+        }
+
+        .badge-success {
+            background: linear-gradient(135deg, var(--success), #34D399);
+        }
+
+        /* トップへ戻るボタン */
+        .back-to-top {
+            position: fixed;
+            bottom: 32px;
+            right: 32px;
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: var(--shadow-lg);
+            font-size: 1.5rem;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .back-to-top:active {
+            transform: translateY(0);
+        }
+
+        /* フッター */
+        footer {
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 48px 20px;
+            margin-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+        }
+
+        footer p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.875rem;
+            margin: 0;
+        }
+
+        /* レスポンシブ */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 80px 20px 60px;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            h2::before {
+                height: 24px;
+            }
+
+            .table-container {
+                margin: 20px -24px;
+                border-radius: 0;
+                border-left: none;
+                border-right: none;
+            }
+
+            .highlight-box {
+                padding: 24px;
+                margin: 24px 0;
+            }
+
+            .container {
+                padding: 40px 16px;
+            }
+        }
+
+        /* アニメーション */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        .slide-in {
+            opacity: 0;
+            animation: slideIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        /* Key Stats */
+        .key-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 32px 0;
+        }
+
+        .stat-card {
+            background: var(--bg-tertiary);
+            padding: 24px;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+    </style>
+</head>
+<body>
+    <!-- ヒーローセクション -->
+    <div class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">🎆 PRESS BRIEFING</div>
+            <h1>新党「チームみらい」党首会見</h1>
+            <p class="hero-subtitle">国政政党化後の活動計画とデジタル民主主義の実現に向けた取り組み</p>
+            <div class="hero-meta">
+                <div class="meta-item">
+                    <span class="meta-label">開催日</span>
+                    <span class="meta-value">2025.9.18</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">100日プラン</span>
+                    <span class="meta-value">52日目</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">党員数</span>
+                    <span class="meta-value">163名+</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ナビゲーション -->
+    <div class="nav-wrapper">
+        <nav>
+            <ul>
+                <li><a href="#executive-summary" class="nav-link">サマリー</a></li>
+                <li><a href="#key-points" class="nav-link active">最重要ポイント</a></li>
+                <li><a href="#100days-plan" class="nav-link">100日プラン</a></li>
+                <li><a href="#membership" class="nav-link">党員制度</a></li>
+                <li><a href="#recruitment" class="nav-link">候補者公募</a></li>
+                <li><a href="#policy" class="nav-link">政策方針</a></li>
+                <li><a href="#impressions" class="nav-link">所感</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- メインコンテンツ -->
+    <div class="container">
+        <!-- エグゼクティブサマリー -->
+        <section id="executive-summary" class="fade-in">
+            <h2>エグゼクティブサマリー</h2>
+            <p>
+                2025年9月18日、新党「チームみらい」の安野貴博党首は定例記者会見を開き、国政政党化後の活動計画「100日プラン」の進捗状況、
+                および党員制度の開始と候補者公募の強化という今後の政党運営の根幹について発表した。
+                会見の核心は、テクノロジーを活用した政治改革の推進、安定的な財政基盤の確立、
+                そして次期国政選挙に向けた人材確保という3つの戦略的柱にある。
+            </p>
+        </section>
+
+        <!-- 最重要ポイント -->
+        <section id="key-points" class="fade-in">
+            <h2>最重要ポイント</h2>
+            <div class="highlight-box">
+                <h3>「100日プラン」の着実な実行</h3>
+                <p>
+                    国政政党化から52日目を迎え、プランは順調に進捗している。
+                    特に、政党交付金を活用してソフトウェアエンジニアで構成される「永田町エンジニアチーム」を組織し、
+                    政治資金の見える化や国会審議のオープン化を目指すソフトウェア開発に着手したことは、
+                    党の独自性を象徴する動きである。
+                </p>
+            </div>
+
+            <div class="highlight-box">
+                <h3>財政基盤強化のための党員制度</h3>
+                <p>
+                    企業・団体献金や政治資金パーティーに依存しない運営方針の下、
+                    安定的な収入源確保を目的として月額制の党員制度を開始した。
+                    会費は比較的高額に設定されているが、これは「永田町エンジニアチーム」への投資や、
+                    党員でなくとも政策議論に参加できるオープンな党運営設計を背景としている。
+                </p>
+            </div>
+
+            <div class="highlight-box">
+                <h3>価値観を重視した候補者公募</h3>
+                <p>
+                    次期衆院選を見据え、候補者公募を強化。擁立人数の目標は設けず、
+                    党のビジョンや価値観を共有できる人材を厳選する方針を明確にした。
+                    エンジニア経験者に限らず、多様なスキルを持つ人材に門戸を開き、
+                    従来の政治家の枠にとらわれない候補者の発掘を目指す。
+                </p>
+            </div>
+
+            <div class="highlight-box">
+                <h3>超党派によるデジタル民主主義の模索</h3>
+                <p>
+                    AIなどの技術を活用した「デジタル民主主義」の実現に向け、
+                    超党派の勉強会の立ち上げを準備中である。偽情報対策や国会のあり方など、
+                    与野党が協力して取り組むべき喫緊の課題について議論する場を設けることを目指しており、
+                    党の政策実現における中核的なアプローチとなっている。
+                </p>
+            </div>
+        </section>
+
+        <!-- 100日プランの進捗 -->
+        <section id="100days-plan" class="fade-in">
+            <h2>100日プランの進捗</h2>
+            <div class="key-stats">
+                <div class="stat-card">
+                    <div class="stat-number">52</div>
+                    <div class="stat-label">経過日数</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">52%</div>
+                    <div class="stat-label">進捗率</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">8名</div>
+                    <div class="stat-label">エンジニアチーム</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">48日</div>
+                    <div class="stat-label">残り日数</div>
+                </div>
+            </div>
+            <p>
+                参院選マニフェストで公約した、国政政党成立（7月29日）から100日間で実行する「100日プラン」について、
+                52日目時点での進捗状況が報告された。プランの各項目は順調に推移しているとの認識が示された。
+            </p>
+
+            <h3>1.1. 本格始動に向けた組織づくり</h3>
+            <ul>
+                <li>
+                    <strong>永田町エンジニアチームの組織:</strong> 政党交付金を活用し、
+                    ソフトウェアエンジニアによる「永田町エンジニアチーム」を組織した。現在コアメンバー8名が所属している。
+                </li>
+                <li>
+                    <strong>ソフトウェア開発:</strong> 同チームは現在、以下の仕組みを開発中である。
+                    <ul>
+                        <li>政治資金の見える化システム</li>
+                        <li>国会審議をオープン化するためのシステム</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>党運営体制の構築:</strong> 国会対策、政務調査、組織活動など、
+                    党運営を担う体制の構築も並行して進めている。
+                    将来的な党員・議員の増加に対応できる健全な組織拡大を目指す。
+                </li>
+            </ul>
+
+            <h3>1.2. ユーティリティ政党としての連携推進</h3>
+            <ul>
+                <li>
+                    <strong>超党派勉強会の準備:</strong> AIなどを活用した「デジタル民主主義」について、
+                    オープンかつ国民的な検討を進めるため、超党派の勉強会の立ち上げを準備中。
+                    賛同する国会議員と具体的な調整を行っている段階。
+                </li>
+                <li>
+                    <strong>オープンソースによる支援:</strong> 開発したソフトウェアをオープンソース化し、
+                    他党や地方自治体への支援を行っていく方針。
+                </li>
+            </ul>
+
+            <h3>1.3. 社会実装の迅速な実行</h3>
+            <ul>
+                <li>
+                    <strong>政治資金の見える化:</strong> エンジニアチームの技術力を活かし、
+                    政治資金を見える化する仕組み「未来まる見え政治資金」を開発。
+                    近日中に、まずチームみらい自身の政治資金を同システムで公開する予定。
+                </li>
+            </ul>
+        </section>
+
+        <!-- 党員制度 -->
+        <section id="membership" class="fade-in">
+            <h2>党員制度の創設と財政戦略</h2>
+            <p>
+                9月17日より党員の募集を開始したことが発表された。
+                これは、党の財政基盤を安定させ、持続可能な活動を確保するための重要な施策と位置づけられている。
+            </p>
+
+            <h3>2.1. 制度概要とサポーターとの違い</h3>
+            <ul>
+                <li>
+                    <strong>党員制度:</strong> 月々の党費を納めることで党を財政的に支える制度。
+                    党大会への参加や議決権など、党運営に関与する権利を持つ。
+                </li>
+                <li>
+                    <strong>サポーター制度:</strong> 党費の負担はなく、
+                    政策実現のためにボランティアなどで共に活動する制度。
+                </li>
+                <li>
+                    <strong>両立の方針:</strong> 両制度は別個のものとして、どちらも大切にしていく方針。
+                    政策提案プロセスへの参加は党員やサポーターであることを条件とせず、
+                    広く有権者の声が届く仕組みを目指す。
+                </li>
+            </ul>
+
+            <h3>2.2. 会費プランと党員の権利</h3>
+            <p>党員制度には3つのプランが用意されており、全プランで党大会への参加権と議決権が付与される。</p>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>プラン名</th>
+                            <th>月額料金</th>
+                            <th>主な権利・特徴</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="badge badge-secondary">スターター</span></td>
+                            <td>￥1,500</td>
+                            <td>党大会への参加、議決権</td>
+                        </tr>
+                        <tr>
+                            <td><span class="badge">レギュラー</span></td>
+                            <td>￥5,000</td>
+                            <td>党大会への参加、議決権</td>
+                        </tr>
+                        <tr>
+                            <td><span class="badge badge-success">プレミアム</span></td>
+                            <td>￥10,000</td>
+                            <td>党大会への参加、議決権、党首選投票権など</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>※プランによる詳細な違いとして、党大会へのオンライン／オフライン参加の可否や、党首選挙への投票権の有無などが存在する。</p>
+
+            <h3>2.3. 会費設定の背景</h3>
+            <p>会費が他党と比較して高めに設定されている理由として、以下の3点が挙げられた。</p>
+            <ol>
+                <li>
+                    <strong>安定的な収入源の確保:</strong> 企業・団体献金や政治資金パーティーを行っておらず、
+                    議席数も少ないため、安定した収入源の確保が不可欠。
+                </li>
+                <li>
+                    <strong>追加的投資の存在:</strong> 「永田町エンジニアチーム」という他党にはない投資を行っており、
+                    月間収支は赤字状態にある。党職員の持続可能な給与水準を維持するためにも収入確保が重要。
+                </li>
+                <li>
+                    <strong>開かれた政治参加の設計:</strong> 党員にならなければ政治に声が届かないという構造ではなく、
+                    党員以外も政策議論に参加できる設計を考えているため。
+                </li>
+            </ol>
+
+            <h3>2.4. 現状の収入源と党員加入状況</h3>
+            <ul>
+                <li>
+                    <strong>現在の収入源:</strong>
+                    <ul>
+                        <li>政党交付金（今年度4,800万円）</li>
+                        <li>個人からの寄付金（ワンショット）</li>
+                        <li>党費（今回新設）</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>党員加入状況（9月18日会見時点）:</strong>
+                </li>
+            </ul>
+            <div class="key-stats">
+                <div class="stat-card">
+                    <div class="stat-number">163</div>
+                    <div class="stat-label">総党員数</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">26</div>
+                    <div class="stat-label">プレミアム会員</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">44</div>
+                    <div class="stat-label">レギュラー会員</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">93</div>
+                    <div class="stat-label">スターター会員</div>
+                </div>
+            </div>
+            <p>募集開始（9月17日夜）から約1日での初動について、「悪くないのではないか」との所感が示された。</p>
+            <ul style="display: none;">
+            </ul>
+        </section>
+
+        <!-- 候補者公募と選挙戦略 -->
+        <section id="recruitment" class="fade-in">
+            <h2>候補者公募と選挙戦略</h2>
+
+            <h3>3.1. 候補者公募の方針</h3>
+            <ul>
+                <li>
+                    <strong>通年公募と強化:</strong> 候補者公募は通年で行っており、次期衆院選に向けてさらに強化する。
+                </li>
+                <li>
+                    <strong>質を重視:</strong> 擁立数を目標とせず、「価値観やビジョンを共有できる方」
+                    「自信を持って国会に送り出せる方」を求める。
+                </li>
+                <li>
+                    <strong>多様な人材の発掘:</strong> 従来の政治家を目指していた層に加え、
+                    これまで議員をキャリアの選択肢に入れていなかった多様なスキルを持つ人材
+                    （エンジニア、政策立案が得意な人、有権者とのコミュニケーションが得意な人など）に、
+                    真剣な検討を促している。
+                </li>
+            </ul>
+
+            <h3>3.2. 選挙戦略</h3>
+            <ul>
+                <li>
+                    <strong>国政選挙への注力:</strong> 当面はリソースを集中させるため、
+                    国政選挙（次期衆院選）への準備に注力する。
+                </li>
+                <li>
+                    <strong>衆院選の目標:</strong> 時期によって目標は変動するが、
+                    前回の参院選で獲得した「1議席・151万票」を上回る議席数・得票数を目指すことがベースラインとなる。
+                </li>
+                <li>
+                    <strong>地方選挙への展開:</strong> 2027年の統一地方選挙を一つのマイルストーンと見据え、
+                    2026年以降に地方議会での活動を順次始動させる計画。
+                </li>
+            </ul>
+        </section>
+
+        <!-- 主要な政策・活動方針 -->
+        <section id="policy" class="fade-in">
+            <h2>主要な政策・活動方針</h2>
+
+            <h3>4.1. デジタル民主主義と超党派勉強会</h3>
+            <ul>
+                <li>
+                    <strong>目的:</strong> AIやIT技術を活用し、
+                    立法府や民主主義をどのようにアップデートできるかを議論する場を設ける。
+                </li>
+                <li>
+                    <strong>開催時期:</strong> 9月末から10月上旬に第1回開催を目指す（他の参加者と調整中）。
+                </li>
+                <li>
+                    <strong>主要テーマ:</strong>
+                    <ul>
+                        <li>国会のあり方の変革</li>
+                        <li>SNSの普及による情報流通の変化への対応</li>
+                        <li>選挙期間中の偽情報や世論工作への枠組み作り</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>意義:</strong> これらの課題は与党または野党単独では解決が難しく、
+                    与野党が共に議論する超党派の場が重要であるとの認識。
+                </li>
+            </ul>
+
+            <h3>4.2. 国会改革に関する見解</h3>
+            <ul>
+                <li>
+                    <strong>具体的な提案:</strong> 本会議場へのタブレットやPCなど通信機器の持ち込み規制を緩和すべき。
+                </li>
+                <li>
+                    <strong>理由:</strong> 答弁中に疑問点を即座に調査できることで議員の理解度が向上する。
+                    また、立法府としてDXに前向きな姿勢を示すことは、日本社会全体のDX推進においても重要である。
+                </li>
+            </ul>
+
+            <h3>4.3. 偽情報（フェイクニュース）対策</h3>
+            <ul>
+                <li>
+                    <strong>現状認識:</strong> 政府の対策はまだなく、これから議論が必要な段階。
+                </li>
+                <li>
+                    <strong>基本的な考え方:</strong>
+                    <ul>
+                        <li>政府によるコンテンツ削除は「表現の自由」の観点から慎重であるべき。
+                            将来的な悪用のリスクを考慮したルール設計が必要。</li>
+                        <li>対策案として、偽情報と認定された投稿について、
+                            プラットフォーム事業者側の協力の下、
+                            アルゴリズムによる拡散（ブースト）を停止させることが考えられる。</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>課題:</strong> プラットフォーマーの多くが国外企業であり、
+                    どのように協力を求め、実効性を持たせる（エンフォースする）かが論点となる。
+                </li>
+            </ul>
+
+            <h3>4.4. 経済成長戦略</h3>
+            <ul>
+                <li>
+                    <strong>基本方針:</strong> 再分配だけでなく、
+                    日本の「パイをどう大きくするか」という成長戦略の議論を重視する。
+                </li>
+                <li>
+                    <strong>注目分野:</strong> 特にAI分野への前向きな投資が重要。
+                    AIはWebやスマートフォンと同様に産業構造を大きく変える可能性があり、
+                    今後20～30年の日本の競争力を左右する。
+                    AI技術はロボティクスやAI創薬など、他分野の技術の基礎にもなり得るとの認識を示した。
+                </li>
+            </ul>
+
+            <h3>4.5. 他党との連携方針</h3>
+            <ul>
+                <li>
+                    <strong>基本姿勢:</strong> 政策ごとに是々非々で判断する。
+                </li>
+                <li>
+                    <strong>連立等:</strong> 与党入りや連立は現状考えていない。この基本方針に変化はない。
+                </li>
+            </ul>
+        </section>
+
+        <!-- 永田町での活動所感 -->
+        <section id="impressions" class="fade-in">
+            <h2>永田町での活動所感</h2>
+            <p>
+                国政政党化後の52日間について、安野党首は永田町の独自の文化や慣習に触れ、
+                ビジネスやテック業界との違い（例：本会議場へのタブレット持ち込み禁止）に驚きつつも、
+                中には合理的なものもあると述べた。新参者として、まずは違いを把握し学ぶ姿勢が重要だとした。
+                一方で、他党の議員が党派を超えて協力的であることはポジティブな驚きであり、
+                異分子として排除される懸念は杞憂であったと語った。
+            </p>
+        </section>
+    </div>
+
+    <!-- フッター -->
+    <footer>
+        <p>&copy; 2025 チームみらい党首会見ブリーフィング | 2025年9月18日</p>
+    </footer>
+
+    <!-- トップへ戻るボタン -->
+    <div class="back-to-top" id="back-to-top">
+        <span>↑</span>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // スムーススクロール
+        document.addEventListener('DOMContentLoaded', function() {
+            // ナビゲーションリンクのスムーススクロール
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+
+                    if (targetSection) {
+                        // ナビゲーションバーの高さを取得
+                        const navHeight = document.querySelector('nav').offsetHeight;
+                        const targetPosition = targetSection.offsetTop - navHeight - 20;
+
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+
+                        // アクティブクラスの更新
+                        navLinks.forEach(l => l.classList.remove('active'));
+                        this.classList.add('active');
+                    }
+                });
+            });
+
+            // スクロール時のナビゲーションアクティブ状態の更新
+            function updateActiveNavLink() {
+                const scrollPosition = window.scrollY + 100;
+                const sections = document.querySelectorAll('section');
+
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.offsetHeight;
+                    const sectionId = section.getAttribute('id');
+
+                    if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href') === `#${sectionId}`) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }
+
+            // トップへ戻るボタンの制御
+            const backToTopButton = document.getElementById('back-to-top');
+
+            function toggleBackToTopButton() {
+                if (window.scrollY > 300) {
+                    backToTopButton.classList.add('visible');
+                } else {
+                    backToTopButton.classList.remove('visible');
+                }
+            }
+
+            backToTopButton.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            // スクロールイベントの最適化
+            let ticking = false;
+            function handleScroll() {
+                if (!ticking) {
+                    window.requestAnimationFrame(function() {
+                        updateActiveNavLink();
+                        toggleBackToTopButton();
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            }
+
+            window.addEventListener('scroll', handleScroll);
+
+            // 初回実行
+            updateActiveNavLink();
+            toggleBackToTopButton();
+
+            // セクションのフェードインアニメーション
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // 各セクションを監視対象に追加
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>

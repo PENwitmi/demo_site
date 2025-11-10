@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML・CSS・JavaScript入門 | 高校生向けWeb開発ガイド</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-green: #2e7d32;
+            --light-green: #4caf50;
+            --accent-green: #81c784;
+            --pale-green: #c8e6c9;
+            --background-green: #e8f5e9;
+            --dark-green: #1b5e20;
+            --text-dark: #212121;
+            --text-light: #757575;
+            --white: #ffffff;
+            --shadow: 0 4px 6px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: linear-gradient(135deg, var(--background-green) 0%, #ffffff 100%);
+            min-height: 100vh;
+        }
+
+        /* ヘッダー */
+        header {
+            background: linear-gradient(135deg, var(--primary-green), var(--light-green));
+            color: var(--white);
+            padding: 60px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: backgroundMove 20s linear infinite;
+        }
+
+        @keyframes backgroundMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            animation: fadeInDown 1s ease;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1s ease 0.5s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ナビゲーション */
+        nav {
+            background: var(--white);
+            padding: 20px;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            background: rgba(255,255,255,0.95);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        nav a {
+            color: var(--primary-green);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            padding: 8px 16px;
+            border-radius: 20px;
+            position: relative;
+        }
+
+        nav a:hover {
+            background: var(--pale-green);
+            transform: translateY(-2px);
+        }
+
+        /* コンテナ */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* セクション */
+        section {
+            background: var(--white);
+            margin: 30px 0;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: var(--shadow-lg);
+            animation: fadeIn 1s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h2 {
+            color: var(--primary-green);
+            font-size: 2rem;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        h2::before {
+            content: "";
+            width: 5px;
+            height: 40px;
+            background: linear-gradient(to bottom, var(--light-green), var(--accent-green));
+            border-radius: 3px;
+        }
+
+        h3 {
+            color: var(--dark-green);
+            margin: 25px 0 15px;
+            font-size: 1.4rem;
+        }
+
+        p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+            color: var(--text-dark);
+        }
+
+        /* コードブロック */
+        .code-block {
+            background: #f5f5f5;
+            border-left: 4px solid var(--light-green);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+            position: relative;
+        }
+
+        .code-block::before {
+            content: attr(data-lang);
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            background: var(--accent-green);
+            color: var(--white);
+            padding: 2px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        /* インタラクティブデモ */
+        .demo-container {
+            background: linear-gradient(135deg, var(--background-green), var(--white));
+            padding: 30px;
+            border-radius: 10px;
+            margin: 25px 0;
+            border: 2px solid var(--pale-green);
+        }
+
+        .demo-result {
+            background: var(--white);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            min-height: 100px;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        /* ボタン */
+        .btn {
+            background: linear-gradient(135deg, var(--light-green), var(--accent-green));
+            color: var(--white);
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
+            display: inline-block;
+            margin: 10px 5px;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(76,175,80,0.3);
+        }
+
+        .btn:active {
+            transform: translateY(-1px);
+        }
+
+        /* カード */
+        .card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border: 1px solid var(--pale-green);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        /* グリッドレイアウト */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        /* ポイントボックス */
+        .point-box {
+            background: linear-gradient(135deg, var(--pale-green), var(--background-green));
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid var(--light-green);
+        }
+
+        .point-box strong {
+            color: var(--primary-green);
+            font-size: 1.1rem;
+        }
+
+        /* トグルボタン */
+        .toggle-container {
+            margin: 20px 0;
+        }
+
+        .toggle-btn {
+            background: var(--accent-green);
+            color: var(--white);
+            padding: 8px 20px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .toggle-btn:hover {
+            background: var(--light-green);
+        }
+
+        .toggle-content {
+            display: none;
+            margin-top: 15px;
+            padding: 20px;
+            background: var(--background-green);
+            border-radius: 8px;
+            animation: slideDown 0.3s ease;
+        }
+
+        .toggle-content.active {
+            display: block;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* タブ */
+        .tab-container {
+            margin: 30px 0;
+        }
+
+        .tab-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background: var(--pale-green);
+            color: var(--primary-green);
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px 8px 0 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .tab-btn.active {
+            background: var(--light-green);
+            color: var(--white);
+        }
+
+        .tab-content {
+            display: none;
+            padding: 30px;
+            background: var(--white);
+            border: 2px solid var(--pale-green);
+            border-radius: 0 8px 8px 8px;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        /* プログレスバー */
+        .progress-container {
+            margin: 30px 0;
+        }
+
+        .progress-bar {
+            background: var(--pale-green);
+            height: 30px;
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, var(--light-green), var(--accent-green));
+            height: 100%;
+            width: 0%;
+            border-radius: 15px;
+            transition: width 2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: bold;
+        }
+
+        /* アラート */
+        .alert {
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            animation: slideIn 0.5s ease;
+        }
+
+        .alert-success {
+            background: var(--pale-green);
+            color: var(--dark-green);
+            border: 1px solid var(--accent-green);
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(-20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* レスポンシブ */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            section {
+                padding: 25px;
+            }
+            
+            nav ul {
+                gap: 15px;
+            }
+            
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* スクロールアニメーション */
+        .scroll-fade {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .scroll-fade.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* フローティングアクション */
+        .floating-action {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, var(--light-green), var(--accent-green));
+            color: var(--white);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: var(--shadow-lg);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .floating-action:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(76,175,80,0.4);
+        }
+    </style>
+</head>
+<body>
+    <!-- ヘッダー -->
+    <header>
+        <h1>🌱 HTML・CSS・JavaScript入門</h1>
+        <p class="subtitle">Webサイトの仕組みを楽しく学ぼう！高校生でもわかる完全ガイド</p>
+    </header>
+
+    <!-- ナビゲーション -->
+    <nav>
+        <ul>
+            <li><a href="#intro">はじめに</a></li>
+            <li><a href="#html">HTML編</a></li>
+            <li><a href="#css">CSS編</a></li>
+            <li><a href="#js">JavaScript編</a></li>
+            <li><a href="#practice">実践編</a></li>
+            <li><a href="#summary">まとめ</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <!-- はじめに -->
+        <section id="intro">
+            <h2>🚀 はじめに - Webサイトってどうやって動いてるの？</h2>
+            <p>
+                みなさんが毎日見ているWebサイト。実は<strong>3つの技術</strong>で作られています！
+                これらを組み合わせることで、美しくて動きのあるWebサイトが完成するんです。
+            </p>
+            
+            <div class="grid">
+                <div class="card">
+                    <div class="card-icon">🏗️</div>
+                    <h3>HTML（エイチティーエムエル）</h3>
+                    <p>Webサイトの<strong>骨組み</strong>を作る言語。文章や画像を配置する設計図のようなもの。</p>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon">🎨</div>
+                    <h3>CSS（シーエスエス）</h3>
+                    <p>Webサイトの<strong>見た目</strong>を整える言語。色やレイアウトを美しくデザインする。</p>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon">⚡</div>
+                    <h3>JavaScript（ジャバスクリプト）</h3>
+                    <p>Webサイトに<strong>動き</strong>を加える言語。ボタンを押したときの反応などを作る。</p>
+                </div>
+            </div>
+
+            <div class="point-box">
+                <strong>💡 ポイント</strong><br>
+                この3つを「家」に例えると：<br>
+                • HTML = 家の骨組み（柱や壁）<br>
+                • CSS = 内装や外装（壁紙や色）<br>
+                • JavaScript = 電気設備（スイッチやドアベル）
+            </div>
+        </section>
+
+        <!-- HTML編 -->
+        <section id="html" class="scroll-fade">
+            <h2>📝 HTML編 - Webページの骨組みを作ろう</h2>
+            
+            <h3>HTMLってなに？</h3>
+            <p>
+                HTML（HyperText Markup Language）は、Webページの<strong>構造</strong>を定義する言語です。
+                「タグ」と呼ばれる目印を使って、「ここは見出し」「ここは段落」というように内容を整理します。
+            </p>
+
+            <h3>基本的なHTMLの書き方</h3>
+            <div class="code-block" data-lang="HTML">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;私のWebサイト&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;こんにちは！&lt;/h1&gt;
+    &lt;p&gt;これが私の最初のWebページです。&lt;/p&gt;
+    &lt;img src="photo.jpg" alt="写真"&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+            </div>
+
+            <div class="demo-container">
+                <h3>🔬 実際に試してみよう！</h3>
+                <p>下のボタンを押すと、HTMLがどのように表示されるか確認できます。</p>
+                <button class="btn" onclick="showHTMLDemo()">HTMLを表示</button>
+                <div id="html-demo" class="demo-result"></div>
+            </div>
+
+            <h3>よく使うHTMLタグ</h3>
+            <div class="tab-container">
+                <div class="tab-buttons">
+                    <button class="tab-btn active" onclick="showTab('text-tags')">テキスト系</button>
+                    <button class="tab-btn" onclick="showTab('structure-tags')">構造系</button>
+                    <button class="tab-btn" onclick="showTab('media-tags')">メディア系</button>
+                </div>
+                
+                <div id="text-tags" class="tab-content active">
+                    <ul>
+                        <li><code>&lt;h1&gt;〜&lt;h6&gt;</code> - 見出し（h1が一番大きい）</li>
+                        <li><code>&lt;p&gt;</code> - 段落</li>
+                        <li><code>&lt;strong&gt;</code> - 重要な文字（太字）</li>
+                        <li><code>&lt;em&gt;</code> - 強調（斜体）</li>
+                        <li><code>&lt;br&gt;</code> - 改行</li>
+                    </ul>
+                </div>
+                
+                <div id="structure-tags" class="tab-content">
+                    <ul>
+                        <li><code>&lt;div&gt;</code> - ブロック要素のコンテナ</li>
+                        <li><code>&lt;span&gt;</code> - インライン要素のコンテナ</li>
+                        <li><code>&lt;header&gt;</code> - ヘッダー部分</li>
+                        <li><code>&lt;footer&gt;</code> - フッター部分</li>
+                        <li><code>&lt;nav&gt;</code> - ナビゲーション</li>
+                    </ul>
+                </div>
+                
+                <div id="media-tags" class="tab-content">
+                    <ul>
+                        <li><code>&lt;img&gt;</code> - 画像</li>
+                        <li><code>&lt;video&gt;</code> - 動画</li>
+                        <li><code>&lt;audio&gt;</code> - 音声</li>
+                        <li><code>&lt;a&gt;</code> - リンク</li>
+                        <li><code>&lt;iframe&gt;</code> - 外部コンテンツの埋め込み</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- CSS編 -->
+        <section id="css" class="scroll-fade">
+            <h2>🎨 CSS編 - Webページをおしゃれにデザイン</h2>
+            
+            <h3>CSSってなに？</h3>
+            <p>
+                CSS（Cascading Style Sheets）は、HTMLで作った骨組みに<strong>デザイン</strong>を加える言語です。
+                色、大きさ、配置など、見た目に関するすべてをコントロールできます。
+            </p>
+
+            <h3>CSSの書き方</h3>
+            <div class="code-block" data-lang="CSS">
+/* セレクタ { プロパティ: 値; } */
+h1 {
+    color: green;           /* 文字色を緑に */
+    font-size: 32px;       /* 文字サイズを32pxに */
+    text-align: center;    /* 中央揃え */
+}
+
+.my-class {
+    background-color: #f0f0f0;  /* 背景色 */
+    padding: 20px;              /* 内側の余白 */
+    border-radius: 10px;        /* 角を丸く */
+}
+            </div>
+
+            <div class="demo-container">
+                <h3>🎨 CSSの効果を体験しよう！</h3>
+                <div class="grid">
+                    <div>
+                        <button class="btn" onclick="applyStyle('color')">文字色を変える</button>
+                        <button class="btn" onclick="applyStyle('size')">サイズを変える</button>
+                        <button class="btn" onclick="applyStyle('animation')">アニメーション</button>
+                    </div>
+                    <div id="css-demo" class="demo-result">
+                        <h3 id="css-target">このテキストが変化します！</h3>
+                    </div>
+                </div>
+            </div>
+
+            <h3>よく使うCSSプロパティ</h3>
+            <div class="toggle-container">
+                <button class="toggle-btn" onclick="toggleContent('css-colors')">🎨 色関連</button>
+                <div id="css-colors" class="toggle-content">
+                    <ul>
+                        <li><code>color</code> - 文字色</li>
+                        <li><code>background-color</code> - 背景色</li>
+                        <li><code>border-color</code> - 枠線の色</li>
+                        <li><code>opacity</code> - 透明度</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="toggle-container">
+                <button class="toggle-btn" onclick="toggleContent('css-layout')">📐 レイアウト関連</button>
+                <div id="css-layout" class="toggle-content">
+                    <ul>
+                        <li><code>width / height</code> - 幅と高さ</li>
+                        <li><code>margin</code> - 外側の余白</li>
+                        <li><code>padding</code> - 内側の余白</li>
+                        <li><code>display</code> - 表示方法</li>
+                        <li><code>position</code> - 配置方法</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="toggle-container">
+                <button class="toggle-btn" onclick="toggleContent('css-text')">✏️ テキスト関連</button>
+                <div id="css-text" class="toggle-content">
+                    <ul>
+                        <li><code>font-size</code> - 文字サイズ</li>
+                        <li><code>font-weight</code> - 文字の太さ</li>
+                        <li><code>text-align</code> - 文字揃え</li>
+                        <li><code>line-height</code> - 行の高さ</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- JavaScript編 -->
+        <section id="js" class="scroll-fade">
+            <h2>⚡ JavaScript編 - Webページに命を吹き込もう</h2>
+            
+            <h3>JavaScriptってなに？</h3>
+            <p>
+                JavaScriptは、Webページに<strong>動的な機能</strong>を追加するプログラミング言語です。
+                ユーザーの操作に反応したり、データを処理したり、アニメーションを作ったりできます。
+            </p>
+
+            <h3>JavaScriptの基本</h3>
+            <div class="code-block" data-lang="JavaScript">
+// 変数を作る
+let message = "こんにちは！";
+let count = 0;
+
+// 関数を作る
+function sayHello() {
+    alert(message);
+}
+
+// ボタンがクリックされたときの処理
+document.getElementById("myButton").onclick = function() {
+    count++;
+    console.log("クリック回数: " + count);
+};
+            </div>
+
+            <div class="demo-container">
+                <h3>🎮 JavaScriptで遊んでみよう！</h3>
+                
+                <div class="grid">
+                    <div>
+                        <h4>1. クリックカウンター</h4>
+                        <button class="btn" onclick="incrementCounter()">クリック！</button>
+                        <p>クリック回数: <span id="counter">0</span></p>
+                    </div>
+                    
+                    <div>
+                        <h4>2. 名前を入力</h4>
+                        <input type="text" id="nameInput" placeholder="名前を入力" style="padding: 10px; border: 2px solid #81c784; border-radius: 5px;">
+                        <button class="btn" onclick="greetUser()">挨拶する</button>
+                        <p id="greeting"></p>
+                    </div>
+                </div>
+
+                <div style="margin-top: 30px;">
+                    <h4>3. 色変更ゲーム</h4>
+                    <div id="color-box" style="width: 200px; height: 200px; background: #4caf50; border-radius: 10px; margin: 20px auto; transition: all 0.3s ease;"></div>
+                    <button class="btn" onclick="changeRandomColor()">ランダムに色を変える</button>
+                </div>
+            </div>
+
+            <h3>JavaScriptでできること</h3>
+            <div class="grid">
+                <div class="card">
+                    <strong>📱 ユーザー操作への反応</strong>
+                    <p>クリック、マウス移動、キーボード入力などに反応</p>
+                </div>
+                <div class="card">
+                    <strong>📊 データの処理</strong>
+                    <p>計算、並び替え、フィルタリングなど</p>
+                </div>
+                <div class="card">
+                    <strong>🎬 アニメーション</strong>
+                    <p>要素を動かしたり、フェードイン/アウトさせたり</p>
+                </div>
+                <div class="card">
+                    <strong>🌐 サーバーとの通信</strong>
+                    <p>データの送受信、リアルタイム更新</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 実践編 -->
+        <section id="practice" class="scroll-fade">
+            <h2>🛠️ 実践編 - 3つを組み合わせてミニアプリを作ろう！</h2>
+            
+            <h3>TODOリストアプリ</h3>
+            <p>HTML、CSS、JavaScriptを組み合わせて、簡単なTODOリストを作ってみましょう！</p>
+            
+            <div class="demo-container">
+                <div style="max-width: 500px; margin: 0 auto;">
+                    <h4 style="color: var(--primary-green);">📝 私のTODOリスト</h4>
+                    <div style="display: flex; gap: 10px; margin: 20px 0;">
+                        <input type="text" id="todoInput" placeholder="やることを入力..." style="flex: 1; padding: 12px; border: 2px solid var(--accent-green); border-radius: 8px; font-size: 16px;">
+                        <button class="btn" onclick="addTodo()">追加</button>
+                    </div>
+                    <ul id="todoList" style="list-style: none; padding: 0;"></ul>
+                </div>
+            </div>
+
+            <h3>このアプリの仕組み</h3>
+            <div class="point-box">
+                <strong>🔍 3つの技術の役割分担</strong><br>
+                • <strong>HTML</strong>: 入力欄、ボタン、リストの枠組みを作る<br>
+                • <strong>CSS</strong>: きれいなデザイン、色、レイアウトを整える<br>
+                • <strong>JavaScript</strong>: ボタンを押したときの動作、リストの追加・削除機能
+            </div>
+
+            <div class="progress-container">
+                <h3>あなたの学習進捗</h3>
+                <div class="progress-bar">
+                    <div id="progress" class="progress-fill">0%</div>
+                </div>
+                <button class="btn" onclick="updateProgress()">進捗を更新</button>
+            </div>
+        </section>
+
+        <!-- まとめ -->
+        <section id="summary" class="scroll-fade">
+            <h2>🎯 まとめ - 今日学んだこと</h2>
+            
+            <div class="alert alert-success">
+                <span style="font-size: 1.5rem;">🎉</span>
+                <div>
+                    <strong>おめでとうございます！</strong><br>
+                    あなたはWeb開発の基礎を学びました。これで簡単なWebサイトが作れるようになりました！
+                </div>
+            </div>
+
+            <h3>覚えておくべき重要ポイント</h3>
+            <div class="grid">
+                <div class="point-box">
+                    <strong>HTML = 構造</strong><br>
+                    Webページの骨組みと内容を定義
+                </div>
+                <div class="point-box">
+                    <strong>CSS = デザイン</strong><br>
+                    見た目を美しく、使いやすく整える
+                </div>
+                <div class="point-box">
+                    <strong>JavaScript = 動作</strong><br>
+                    インタラクティブな機能を追加
+                </div>
+            </div>
+
+            <h3>次のステップ</h3>
+            <p>基礎を学んだら、次はこんなことに挑戦してみましょう：</p>
+            <ul>
+                <li>🚀 自分だけのポートフォリオサイトを作る</li>
+                <li>📱 レスポンシブデザイン（スマホ対応）を学ぶ</li>
+                <li>⚡ JavaScriptのフレームワーク（React、Vue.js）に挑戦</li>
+                <li>🌐 サーバーサイドプログラミングを学ぶ</li>
+                <li>🎨 デザインツール（Figma、Adobe XD）を使ってみる</li>
+            </ul>
+
+            <div class="demo-container" style="text-align: center; background: linear-gradient(135deg, var(--light-green), var(--accent-green)); color: white;">
+                <h3>🌟 Web開発の世界へようこそ！</h3>
+                <p>今日学んだことは、プロの開発者も使っている基本技術です。</p>
+                <p>練習を重ねれば、きっと素晴らしいWebサイトが作れるようになります！</p>
+                <button class="btn" style="background: white; color: var(--primary-green);" onclick="celebrate()">
+                    🎊 学習完了を祝う！
+                </button>
+            </div>
+        </section>
+    </div>
+
+    <!-- フローティングアクションボタン -->
+    <div class="floating-action" onclick="scrollToTop()">
+        ↑
+    </div>
+
+    <script>
+        // クリックカウンター
+        let clickCount = 0;
+        function incrementCounter() {
+            clickCount++;
+            document.getElementById('counter').textContent = clickCount;
+        }
+
+        // 名前で挨拶
+        function greetUser() {
+            const name = document.getElementById('nameInput').value;
+            const greeting = document.getElementById('greeting');
+            if (name) {
+                greeting.textContent = `こんにちは、${name}さん！Web開発の世界へようこそ！`;
+                greeting.style.color = '#2e7d32';
+                greeting.style.fontWeight = 'bold';
+            } else {
+                greeting.textContent = '名前を入力してください';
+                greeting.style.color = '#757575';
+            }
+        }
+
+        // ランダム色変更
+        function changeRandomColor() {
+            const colors = ['#f44336', '#e91e63', '#9c27b0', '#673ab7', '#3f51b5', '#2196f3', '#03a9f4', '#00bcd4', '#009688', '#4caf50', '#8bc34a', '#cddc39', '#ffeb3b', '#ffc107', '#ff9800', '#ff5722'];
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            const box = document.getElementById('color-box');
+            box.style.background = randomColor;
+            box.style.transform = 'rotate(' + (Math.random() * 360) + 'deg)';
+        }
+
+        // HTMLデモ
+        function showHTMLDemo() {
+            const demo = document.getElementById('html-demo');
+            demo.innerHTML = `
+                <h1 style="color: var(--primary-green);">こんにちは！</h1>
+                <p>これが私の最初のWebページです。</p>
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Crect width='100' height='100' fill='%234caf50'/%3E%3Ctext x='50' y='55' text-anchor='middle' fill='white' font-size='16'%3E画像%3C/text%3E%3C/svg%3E" alt="サンプル画像" style="border-radius: 8px;">
+            `;
+        }
+
+        // CSSデモ
+        function applyStyle(type) {
+            const target = document.getElementById('css-target');
+            switch(type) {
+                case 'color':
+                    target.style.color = '#' + Math.floor(Math.random()*16777215).toString(16);
+                    break;
+                case 'size':
+                    target.style.fontSize = Math.floor(Math.random() * 30 + 20) + 'px';
+                    break;
+                case 'animation':
+                    target.style.animation = 'none';
+                    setTimeout(() => {
+                        target.style.animation = 'spin 1s ease';
+                    }, 10);
+                    break;
+            }
+        }
+
+        // CSSアニメーション追加
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes spin {
+                0% { transform: rotate(0deg) scale(1); }
+                50% { transform: rotate(180deg) scale(1.2); }
+                100% { transform: rotate(360deg) scale(1); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // タブ切り替え
+        function showTab(tabId) {
+            // すべてのタブコンテンツを非表示
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.remove('active'));
+            
+            // すべてのタブボタンを非アクティブ
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            // 選択されたタブを表示
+            document.getElementById(tabId).classList.add('active');
+            
+            // クリックされたボタンをアクティブに
+            event.target.classList.add('active');
+        }
+
+        // トグルコンテンツ
+        function toggleContent(contentId) {
+            const content = document.getElementById(contentId);
+            content.classList.toggle('active');
+        }
+
+        // TODOリスト
+        function addTodo() {
+            const input = document.getElementById('todoInput');
+            const todoText = input.value.trim();
+            
+            if (todoText) {
+                const todoList = document.getElementById('todoList');
+                const li = document.createElement('li');
+                li.style.cssText = 'background: var(--pale-green); padding: 12px; margin: 8px 0; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; animation: slideIn 0.3s ease;';
+                
+                li.innerHTML = `
+                    <span>${todoText}</span>
+                    <button onclick="this.parentElement.remove()" style="background: var(--light-green); color: white; border: none; padding: 5px 15px; border-radius: 5px; cursor: pointer;">削除</button>
+                `;
+                
+                todoList.appendChild(li);
+                input.value = '';
+            }
+        }
+
+        // Enterキーでも追加できるように
+        document.getElementById('todoInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                addTodo();
+            }
+        });
+
+        // 進捗バー
+        let progress = 0;
+        function updateProgress() {
+            progress += 20;
+            if (progress > 100) progress = 100;
+            const progressBar = document.getElementById('progress');
+            progressBar.style.width = progress + '%';
+            progressBar.textContent = progress + '%';
+            
+            if (progress === 100) {
+                progressBar.style.background = 'linear-gradient(90deg, #4caf50, #81c784)';
+                celebrate();
+            }
+        }
+
+        // お祝い
+        function celebrate() {
+            const confetti = document.createElement('div');
+            confetti.innerHTML = '🎉🎊✨🌟🎈';
+            confetti.style.cssText = 'position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 5rem; animation: celebrate 2s ease; z-index: 10000;';
+            document.body.appendChild(confetti);
+            
+            setTimeout(() => confetti.remove(), 2000);
+        }
+
+        // お祝いアニメーション
+        const celebrateStyle = document.createElement('style');
+        celebrateStyle.textContent = `
+            @keyframes celebrate {
+                0% { transform: translate(-50%, -50%) scale(0) rotate(0deg); opacity: 1; }
+                50% { transform: translate(-50%, -50%) scale(1.5) rotate(180deg); }
+                100% { transform: translate(-50%, -50%) scale(0) rotate(360deg); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(celebrateStyle);
+
+        // トップへスクロール
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // スクロールアニメーション
+        function handleScroll() {
+            const elements = document.querySelectorAll('.scroll-fade');
+            elements.forEach(element => {
+                const rect = element.getBoundingClientRect();
+                if (rect.top < window.innerHeight * 0.8) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', handleScroll);
+        handleScroll(); // 初期表示時にも実行
+
+        // ページ読み込み時のアニメーション
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 1s ease';
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+    </script>
+</body>
+</html>

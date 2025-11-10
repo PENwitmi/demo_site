@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GenSpark AI - 次世代AIエージェント</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --dark-bg: #0f0f1e;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --text-primary: #ffffff;
+            --text-secondary: #b4b4d8;
+            --accent: #667eea;
+            --success: #4ade80;
+            --warning: #fbbf24;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: radial-gradient(ellipse at bottom, #1e1e3f 0%, #0f0f1e 100%);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(102, 126, 234, 0.1) 0%, transparent 70%);
+            animation: pulse 20s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.1) rotate(180deg); }
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 10;
+            padding: 2rem;
+            max-width: 1200px;
+        }
+
+        .logo {
+            font-size: 4rem;
+            font-weight: 900;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 20px rgba(102, 126, 234, 0.5); }
+            to { text-shadow: 0 0 30px rgba(102, 126, 234, 0.8), 0 0 40px rgba(102, 126, 234, 0.5); }
+        }
+
+        .tagline {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+        }
+
+        .hero-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .hero-feature {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .hero-feature:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .hero-feature-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Feature Cards */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 2.5rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(102, 126, 234, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
+            border-color: rgba(102, 126, 234, 0.5);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--primary-gradient);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .feature-description {
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* Super Agent Section */
+        .super-agent {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            border-radius: 30px;
+            padding: 4rem;
+            margin-bottom: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .super-agent::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(240, 147, 251, 0.2) 0%, transparent 70%);
+            animation: float 15s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(-50px, 50px) rotate(180deg); }
+        }
+
+        .super-agent-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .capability-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .capability-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: start;
+            gap: 1rem;
+        }
+
+        .capability-icon {
+            color: var(--success);
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        /* Pricing Section */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .pricing-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-card.featured {
+            border-color: var(--accent);
+            transform: scale(1.05);
+        }
+
+        .pricing-card:hover {
+            border-color: var(--accent);
+        }
+
+        .price {
+            font-size: 3rem;
+            font-weight: 900;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 1rem 0;
+        }
+
+        .price-period {
+            font-size: 1rem;
+            color: var(--text-secondary);
+        }
+
+        /* CTA Button */
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 3rem;
+            background: var(--primary-gradient);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.6);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 3rem 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-secondary);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .logo { font-size: 3rem; }
+            .tagline { font-size: 1.2rem; }
+            .section-title { font-size: 2rem; }
+            .super-agent { padding: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="logo">GenSpark AI</h1>
+            <p class="tagline">次世代AIスーパーエージェントで、あらゆるタスクを自動化</p>
+            
+            <div class="hero-features">
+                <div class="hero-feature">
+                    <div class="hero-feature-icon">🤖</div>
+                    <h3>8つのLLM</h3>
+                    <p>最適なタスク分配</p>
+                </div>
+                <div class="hero-feature">
+                    <div class="hero-feature-icon">🛠️</div>
+                    <h3>80以上のツール</h3>
+                    <p>あらゆる作業に対応</p>
+                </div>
+                <div class="hero-feature">
+                    <div class="hero-feature-icon">🎯</div>
+                    <h3>自律的実行</h3>
+                    <p>計画から実行まで</p>
+                </div>
+                <div class="hero-feature">
+                    <div class="hero-feature-icon">⚡</div>
+                    <h3>即座に開始</h3>
+                    <p>無料200クレジット/日</p>
+                </div>
+            </div>
+            
+            <a href="#features" class="cta-button">今すぐ始める</a>
+        </div>
+    </section>
+
+    <!-- Main Features -->
+    <div class="container">
+        <section id="features">
+            <h2 class="section-title">革新的な機能</h2>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📞</div>
+                    <h3 class="feature-title">音声自動化</h3>
+                    <p class="feature-description">
+                        AI生成音声で実際の電話をかけ、レストランの予約や在庫確認などのリアルワールドタスクを自動化。人間のような自然な会話で対応します。
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🎬</div>
+                    <h3 class="feature-title">コンテンツ作成スイート</h3>
+                    <p class="feature-description">
+                        動画の脚本作成・ナレーション・アニメーション、プロフェッショナルなウェブサイト生成、プレゼンテーションの即時作成まで対応。
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <h3 class="feature-title">高度な研究・分析</h3>
+                    <p class="feature-description">
+                        複数のオンラインソースから最新データを収集・統合し、引用付きの正確な研究レポートを生成。市場分析や学術研究に最適。
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">✨</div>
+                    <h3 class="feature-title">Sparkpages</h3>
+                    <p class="feature-description">
+                        クエリに基づいてリアルタイムでカスタムページを生成。商業的影響を受けない、純粋な知識の統合ページを提供します。
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🌐</div>
+                    <h3 class="feature-title">AI Browser</h3>
+                    <p class="feature-description">
+                        2025年6月リリース。Super Agent内蔵、広告ブロック機能、700以上のツールサポートを備えた専用ブラウザ。
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3 class="feature-title">並列処理</h3>
+                    <p class="feature-description">
+                        複数のAIツールを同時実行し、マルチステップワークフローを高速化。作業効率を大幅に向上させます。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Super Agent Section -->
+        <section class="super-agent">
+            <div class="super-agent-content">
+                <h2 class="section-title">Super Agent - 究極のAIアシスタント</h2>
+                <p style="text-align: center; color: var(--text-secondary); margin-bottom: 2rem;">
+                    「考え、計画し、行動し、ツールを使う」 - 人間のアシスタントのように自律的に動作
+                </p>
+                
+                <div class="capability-list">
+                    <div class="capability-item">
+                        <span class="capability-icon">✓</span>
+                        <div>
+                            <strong>Mixture-of-Agents システム</strong>
+                            <p>8つの異なるサイズのLLMが連携し、最適なタスク分配を実現</p>
+                        </div>
+                    </div>
+                    <div class="capability-item">
+                        <span class="capability-icon">✓</span>
+                        <div>
+                            <strong>透明性のある処理</strong>
+                            <p>AIの思考プロセス、使用ツール、意思決定ロジックを可視化</p>
+                        </div>
+                    </div>
+                    <div class="capability-item">
+                        <span class="capability-icon">✓</span>
+                        <div>
+                            <strong>API直接アクセス</strong>
+                            <p>Web経由ではなくAPIを直接呼び出し、高速かつ正確なデータ取得</p>
+                        </div>
+                    </div>
+                    <div class="capability-item">
+                        <span class="capability-icon">✓</span>
+                        <div>
+                            <strong>最小限の監督</strong>
+                            <p>高レベルな指示だけで、内部でタスクを分解・計画・実行</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Section -->
+        <section>
+            <h2 class="section-title">シンプルな料金プラン</h2>
+            
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Free</h3>
+                    <div class="price">無料</div>
+                    <p class="price-period">200クレジット/日</p>
+                    <ul style="list-style: none; padding: 2rem 0;">
+                        <li>✓ 基本機能</li>
+                        <li>✓ Sparkpage生成（制限あり）</li>
+                        <li>✓ クレジットカード不要</li>
+                        <li>✓ 待機リストなし</li>
+                    </ul>
+                    <a href="#" class="cta-button">無料で始める</a>
+                </div>
+                
+                <div class="pricing-card featured">
+                    <h3>Pro</h3>
+                    <div class="price">$9.99</div>
+                    <p class="price-period">月額</p>
+                    <ul style="list-style: none; padding: 2rem 0;">
+                        <li>✓ 全機能アクセス</li>
+                        <li>✓ 無制限Sparkpage</li>
+                        <li>✓ 高度なツール</li>
+                        <li>✓ 優先サポート</li>
+                    </ul>
+                    <a href="#" class="cta-button">Proにアップグレード</a>
+                </div>
+                
+                <div class="pricing-card">
+                    <h3>Enterprise</h3>
+                    <div class="price">お問い合わせ</div>
+                    <p class="price-period">カスタムプラン</p>
+                    <ul style="list-style: none; padding: 2rem 0;">
+                        <li>✓ カスタムソリューション</li>
+                        <li>✓ チーム向け機能</li>
+                        <li>✓ 専任サポート</li>
+                        <li>✓ SLA保証</li>
+                    </ul>
+                    <a href="#" class="cta-button">お問い合わせ</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Security Section -->
+        <section style="text-align: center; margin-bottom: 4rem;">
+            <h2 class="section-title">プライバシーとセキュリティ</h2>
+            <div style="max-width: 800px; margin: 0 auto;">
+                <p style="color: var(--text-secondary); line-height: 1.8;">
+                    GenSparkはユーザーのプライバシーを最優先に考えています。エンドツーエンド暗号化により
+                    データを保護し、第三者への販売は一切行いません。カスタマイズ可能なプライバシー設定で、
+                    データの保存方法を完全にコントロールできます。
+                </p>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 GenSpark AI. 革新的なAIエージェント技術で未来を創造します。</p>
+        <p style="margin-top: 1rem;">
+            <small>$530M評価額 | 元Baidu幹部による創業 | 2023年設立</small>
+        </p>
+    </footer>
+</body>
+</html>

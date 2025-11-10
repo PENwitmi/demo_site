@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>源氏物語の世界 - 千年前のラブストーリー</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #8b4513;
+            --secondary: #d2691e;
+            --accent: #ff6b6b;
+            --purple: #9370db;
+            --gold: #ffd700;
+            --dark: #2c1810;
+            --light: #faf8f3;
+            --sakura: #ffb7c5;
+            --text: #3a3a3a;
+        }
+        
+        @font-face {
+            font-family: 'Noto Serif JP';
+            src: local('Noto Serif JP');
+        }
+        
+        body {
+            font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif;
+            line-height: 1.8;
+            color: var(--text);
+            background: linear-gradient(135deg, #faf8f3 0%, #f5e6d3 50%, #ffe4e1 100%);
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(255, 183, 197, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 215, 0, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(147, 112, 219, 0.2) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 100%);
+            color: white;
+            padding: 5rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 200%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                90deg,
+                transparent,
+                transparent 10px,
+                rgba(255,255,255,0.05) 10px,
+                rgba(255,255,255,0.05) 20px
+            );
+            animation: wave 20s linear infinite;
+        }
+        
+        @keyframes wave {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(50%); }
+        }
+        
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+            letter-spacing: 0.1em;
+            animation: fadeInScale 1s ease-out;
+            background: linear-gradient(45deg, var(--gold), var(--sakura), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            font-weight: 300;
+            opacity: 0.95;
+            animation: fadeInUp 1s ease-out 0.5s both;
+            color: var(--light);
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        main {
+            padding: 4rem 0;
+        }
+        
+        section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 3rem;
+            margin-bottom: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        section::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--sakura), var(--purple), var(--gold), var(--sakura));
+            border-radius: 20px;
+            opacity: 0;
+            z-index: -1;
+            transition: opacity 0.3s ease;
+            background-size: 400% 400%;
+            animation: gradientShift 10s ease infinite;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        section:hover::after {
+            opacity: 0.5;
+        }
+        
+        h2 {
+            color: var(--dark);
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+            padding-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        h2::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent) 0%, var(--purple) 100%);
+            border-radius: 2px;
+        }
+        
+        h3 {
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin: 2rem 0 1rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .intro-text {
+            font-size: 1.2rem;
+            line-height: 2;
+            color: var(--text);
+            margin-bottom: 2rem;
+        }
+        
+        .highlight {
+            background: linear-gradient(120deg, transparent 0%, var(--sakura) 10%, var(--sakura) 90%, transparent 100%);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+            display: inline-block;
+            transform: skewX(-5deg);
+        }
+        
+        .character-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .character-card {
+            background: linear-gradient(135deg, #ffffff 0%, #faf8f3 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .character-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--accent), var(--purple), var(--gold));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .character-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .character-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .character-name {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+        
+        .character-emoji {
+            font-size: 3rem;
+            float: right;
+            opacity: 0.7;
+        }
+        
+        .modern-connection {
+            background: linear-gradient(135deg, var(--purple) 0%, var(--accent) 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .modern-connection::before {
+            content: '💭';
+            position: absolute;
+            top: -20px;
+            right: 20px;
+            font-size: 5rem;
+            opacity: 0.2;
+            transform: rotate(-15deg);
+        }
+        
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+        
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            position: relative;
+            animation: slideIn 0.6s ease-out;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .timeline-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--sakura) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-right: 2rem;
+            flex-shrink: 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .fun-fact {
+            background: linear-gradient(135deg, #fff5f5 0%, #ffe0e0 100%);
+            border-left: 5px solid var(--accent);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 10px 10px 0;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .fun-fact:hover {
+            transform: translateX(10px);
+            box-shadow: -5px 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .fun-fact::before {
+            content: '💡';
+            position: absolute;
+            left: -15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: white;
+            padding: 5px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+        }
+        
+        .quote-box {
+            background: var(--light);
+            border: 2px solid var(--gold);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            position: relative;
+            font-style: italic;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+        
+        .quote-box::before,
+        .quote-box::after {
+            content: '"';
+            position: absolute;
+            font-size: 4rem;
+            color: var(--gold);
+            opacity: 0.3;
+        }
+        
+        .quote-box::before {
+            top: -10px;
+            left: 20px;
+        }
+        
+        .quote-box::after {
+            bottom: -30px;
+            right: 20px;
+        }
+        
+        footer {
+            background: linear-gradient(135deg, var(--dark) 0%, #1a0f08 100%);
+            color: white;
+            text-align: center;
+            padding: 3rem 0;
+            margin-top: 5rem;
+            position: relative;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--sakura), var(--gold), var(--purple), var(--sakura));
+            animation: shimmer 3s linear infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        /* レスポンシブデザイン */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            section {
+                padding: 2rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .character-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .timeline-icon {
+                width: 50px;
+                height: 50px;
+                margin-right: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            section {
+                padding: 1.5rem;
+                margin-bottom: 2rem;
+            }
+            
+            .character-card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1 class="hero-title">源氏物語の世界</h1>
+            <p class="hero-subtitle">千年前に書かれた、世界最古の恋愛長編小説</p>
+        </div>
+    </header>
+    
+    <main>
+        <div class="container">
+            <section>
+                <h2>📚 源氏物語って何？</h2>
+                <p class="intro-text">
+                    今から約1000年前、平安時代に<span class="highlight">紫式部</span>という女性が書いた超大作小説です。
+                    主人公の光源氏（ひかるげんじ）を中心に、恋愛、友情、家族、政治など、人間ドラマが54巻にわたって描かれています。
+                    まるで現代の大河ドラマや韓国ドラマのような壮大なストーリーなんです！
+                </p>
+                
+                <div class="fun-fact">
+                    <strong>おもしろポイント</strong>：世界で最初の「心理小説」と言われていて、登場人物の細かい心の動きが丁寧に描かれています。
+                    LINEの既読スルーで悩む現代人と同じような恋の悩みが、1000年前にも描かれているんです！
+                </div>
+            </section>
+            
+            <section>
+                <h2>🌸 主要キャラクター紹介</h2>
+                <p>源氏物語には400人以上の登場人物が出てきますが、主要キャラクターを現代風に紹介します！</p>
+                
+                <div class="character-grid">
+                    <div class="character-card">
+                        <span class="character-emoji">👑</span>
+                        <h3 class="character-name">光源氏</h3>
+                        <p>主人公。超イケメンで頭も良くて、スポーツも芸術もできる完璧超人。でも恋愛では結構ダメな部分も...</p>
+                        <p><strong>現代で例えると</strong>：アイドルグループのセンター＋東大生＋プロスポーツ選手みたいな人</p>
+                    </div>
+                    
+                    <div class="character-card">
+                        <span class="character-emoji">💜</span>
+                        <h3 class="character-name">紫の上</h3>
+                        <p>源氏が理想の女性に育てあげた人。美しくて教養もあり、源氏の最愛の人。でも結構苦労人...</p>
+                        <p><strong>現代で例えると</strong>：才色兼備な女子アナ＋アーティストみたいな人</p>
+                    </div>
+                    
+                    <div class="character-card">
+                        <span class="character-emoji">🌙</span>
+                        <h3 class="character-name">藤壺</h3>
+                        <p>源氏の永遠の憧れの人。源氏の父の後妻なので、禁断の恋...</p>
+                        <p><strong>現代で例えると</strong>：手の届かない憧れの先輩みたいな存在</p>
+                    </div>
+                    
+                    <div class="character-card">
+                        <span class="character-emoji">🎭</span>
+                        <h3 class="character-name">六条御息所</h3>
+                        <p>源氏の年上の恋人。プライドが高くて、嫉妬深い。生霊になっちゃうくらい愛が重い...</p>
+                        <p><strong>現代で例えると</strong>：キャリアウーマンで元カノが忘れられない人</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section>
+                <h2>💕 なぜ面白いの？</h2>
+                
+                <h3>1. 超リアルな恋愛心理</h3>
+                <p>好きな人からLINEの返信が来なくて不安になったり、元カレ・元カノのSNSをチェックしちゃったり...
+                そんな恋愛あるあるが、1000年前から変わらずに描かれています。</p>
+                
+                <div class="modern-connection">
+                    <strong>現代との共通点</strong><br>
+                    ・既読スルーならぬ「和歌スルー」で悩む<br>
+                    ・SNSならぬ「噂話」で情報収集<br>
+                    ・グループLINEならぬ「歌合せ」で盛り上がる
+                </div>
+                
+                <h3>2. ドロドロの人間関係</h3>
+                <p>三角関係、不倫、嫉妬、復讐...現代のドラマ顔負けの展開が次々と！
+                特に女性たちの心理戦は、現代の恋愛リアリティ番組を見ているような面白さです。</p>
+                
+                <h3>3. 美しい日本の文化</h3>
+                <p>四季の移ろい、和歌のやりとり、衣装の描写など、平安時代の雅な世界が体験できます。
+                インスタ映えする場面がたくさん！</p>
+            </section>
+            
+            <section>
+                <h2>📖 どう読めばいい？</h2>
+                
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-icon">📱</div>
+                        <div>
+                            <h3>まずはマンガから！</h3>
+                            <p>「あさきゆめみし」など、源氏物語のマンガ版から入るのがおすすめ。
+                            ビジュアルで理解できるので、複雑な人間関係も把握しやすいです。</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-icon">📚</div>
+                        <div>
+                            <h3>現代語訳で読む</h3>
+                            <p>瀬戸内寂聴訳、角田光代訳など、読みやすい現代語訳がたくさん出ています。
+                            まるで現代小説のように楽しめます。</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-icon">🎬</div>
+                        <div>
+                            <h3>映像作品もチェック</h3>
+                            <p>映画やドラマ、アニメなど、様々な形で映像化されています。
+                            好きな俳優さんが出演している作品から入るのもアリ！</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section>
+                <h2>✨ 源氏物語の名シーン</h2>
+                
+                <div class="quote-box">
+                    「いづれの御時にか、女御、更衣あまたさぶらひたまひけるなかに、いとやむごとなき際にはあらぬが、すぐれて時めきたまふありけり」
+                </div>
+                <p style="text-align: center; margin-top: 1rem;">
+                    <strong>現代語訳</strong>：どの天皇の時代だったか、たくさんの女性たちの中で、<br>
+                    そんなに身分は高くないのに、特別に愛された人がいました。
+                </p>
+                
+                <div class="fun-fact">
+                    この冒頭文は、まるで「昔々あるところに...」のような始まり方。
+                    でも実は「身分は高くないのに特別扱い」という、いきなりドラマチックな設定から始まっているんです！
+                </div>
+                
+                <h3>おすすめ名場面ベスト3</h3>
+                <div class="character-grid">
+                    <div class="character-card">
+                        <h3>🌸 桐壺更衣との別れ</h3>
+                        <p>源氏の母の死。わずか3歳で母を失う源氏の運命の始まり。涙なしには読めません。</p>
+                    </div>
+                    
+                    <div class="character-card">
+                        <h3>🎭 葵の上への生霊事件</h3>
+                        <p>六条御息所の嫉妬が生霊となって...ホラー要素もある衝撃展開！</p>
+                    </div>
+                    
+                    <div class="character-card">
+                        <h3>💔 紫の上との最後</h3>
+                        <p>最愛の人との別れ。源氏の人生最大の悲しみが描かれる感動シーン。</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section>
+                <h2>🎯 まとめ：なぜ今読むべき？</h2>
+                
+                <p class="intro-text">
+                    源氏物語は、ただの古典ではありません。<span class="highlight">人間の普遍的な感情</span>を描いた、
+                    時代を超えた名作です。恋愛、嫉妬、野心、後悔...私たちが日々感じる感情が、
+                    1000年前も同じように存在していたことを教えてくれます。
+                </p>
+                
+                <div class="modern-connection">
+                    <h3>📱 現代を生きる私たちへのメッセージ</h3>
+                    <p>
+                        SNS時代の今だからこそ、直接会って話すことの大切さ、
+                        手紙（和歌）に込められた想いの重さ、
+                        人と人とのつながりの本質を考えさせられます。
+                    </p>
+                </div>
+                
+                <p style="font-size: 1.2rem; text-align: center; margin-top: 2rem;">
+                    <strong>さあ、1000年の時を超えた恋愛ドラマの世界へ、飛び込んでみませんか？</strong>
+                </p>
+            </section>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 源氏物語の世界 - 千年の時を超えて愛される物語</p>
+            <p style="margin-top: 1rem; opacity: 0.8;">Created with 💜 for modern readers</p>
+        </div>
+    </footer>
+</body>
+</html>
